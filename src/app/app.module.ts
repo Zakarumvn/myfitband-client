@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorkoutComponent } from './workout/workout.component';
 import {HttpClientModule} from '@angular/common/http';
+import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorkoutComponent
+    WorkoutComponent,
+    WorkoutDetailsComponent
   ],
   imports: [
     BrowserModule,
