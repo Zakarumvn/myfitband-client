@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {WorkoutService} from './workout.service';
-import {Workout} from './workout';
+import {WorkoutService} from '../service/workout.service';
+import {Workout} from '../entity/workout';
 import {Observable} from 'rxjs';
 
 @Component({

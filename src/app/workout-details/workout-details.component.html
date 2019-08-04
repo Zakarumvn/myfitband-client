@@ -20,10 +20,13 @@
         <td>{{workout.startDT}}</td>
         <td>{{workout.stopDT}}</td>
         <td>{{workout.sport.name}}</td>
-        <td><button [routerLink]="['/workout-details', workout.workoutId]" class="btn btn-secondary" name="details">Wyświetl</button></td>
+        <td><button [routerLink]="['/pulse-chart', workout.workoutId]" class="btn btn-secondary" name="details">Wyświetl</button></td>
         <td><button [routerLink]="['/workout-details', workout.workoutId]" class="btn btn-secondary" name="details">Wyświetl</button></td>
       </tr>
       </tbody>
     </table>
+    <div>
+      <app-pulse-chart></app-pulse-chart>
+    </div>
   </div>
 </div>

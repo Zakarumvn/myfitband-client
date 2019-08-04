@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Workout} from '../workout/workout';
-import {WorkoutService} from '../workout/workout.service';
+import {Workout} from '../entity/workout';
+import {WorkoutService} from '../service/workout.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
