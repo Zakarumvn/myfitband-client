@@ -8,7 +8,7 @@ import {PulseChartComponent} from './pulse-chart/pulse-chart.component';
 const routes: Routes = [
   { path: 'workouts', component: WorkoutComponent },
   { path: 'workout-details/:id', component: WorkoutDetailsComponent },
-  { path: 'workout-details/:id', component: WorkoutMapComponent },
+  { path: 'workout-map/:id', component: WorkoutMapComponent },
   { path: 'pulse-chart/:id', component: PulseChartComponent }
 ];
 
