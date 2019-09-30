@@ -3,58 +3,63 @@ import {} from 'googlemaps';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WorkoutService} from '../service/workout.service';
 
+declare var ol: any;
 @Component({
   selector: 'app-workout-map',
   templateUrl: './workout-map.component.html',
   styleUrls: ['./workout-map.component.css']
 })
-export class WorkoutMapComponent implements AfterViewInit  {
-  @ViewChild('map', {static: true}) mapElement: ElementRef;
-  map: google.maps.Map;
+export class WorkoutMapComponent implements OnInit  {
+  map: any;
+  latitude = 51.23553;
+  longitude = 22.54866;
 
   constructor(private router: Router, private route: ActivatedRoute, private workoutService: WorkoutService) { }
 
-  ngAfterViewInit(): void {
-    this.renderMap();
-  }
+  ngOnInit() {
 
-  loadMap = () => {
-    var map = new window['google'].maps.Map(this.mapElement.nativeElement, {
-      center: {lat: 24.5373, lng: 81.3042},
-      zoom: 8
+    this.map = new ol.Map({
+      target: 'map',
+      controls: ol.control.defaults({
+        attributionOptions: {
+          collapsible: false
+        }
+      //}).extend([mousePositionControl]),
+      }),
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([22.5486, 51.2355]),
+        zoom: 17
+      })
     });
 
-    var marker = new window['google'].maps.Marker({
-      position: {lat: 24.5373, lng: 81.3042},
-      map: map,
-      title: 'Hello World!',
-      draggable: true,
-      animation: window['google'].maps.Animation.DROP,
+    let lineString2 = new ol.geom.LineString([
+      ol.proj.fromLonLat([22.547564, 51.236151]),
+      ol.proj.fromLonLat([22.547950, 51.234272]),
+      ol.proj.fromLonLat([22.548656, 51.235912]),
+      ol.proj.fromLonLat([22.548156, 51.236912]),
+      ol.proj.fromLonLat([22.548956, 51.233912]),
+    ]);
+
+    ol.proj.fromLonLat([33.8, 8.4]);
+
+    var layerLines = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [new ol.Feature({
+          geometry: lineString2,
+          name: 'Line'
+        })]
+      }),
+      style: new ol.style.Style({
+        stroke: new ol.style.Stroke({color: 'red', width: 3}),
+      })
     });
+    this.map.addLayer(layerLines);
 
-    var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h3 id="thirdHeading" class="thirdHeading">W3path.com</h3>'+
-      '<div id="bodyContent">'+
-      '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'+
-      '</div>'+
-      '</div>';
-
-    var infowindow = new window['google'].maps.InfoWindow({
-      content: contentString
-    });
-
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-
-  };
-  renderMap() {
-
-    window['initMap'] = () => {
-      this.loadMap();
-    };
   }
 
 }
