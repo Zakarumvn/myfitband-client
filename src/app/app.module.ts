@@ -9,6 +9,8 @@ import { WorkoutDetailsComponent } from './workout-details/workout-details.compo
 import { WorkoutMapComponent } from './workout-map/workout-map.component';
 import { PulseChartComponent } from './pulse-chart/pulse-chart.component';
 import {GoogleChartsModule} from 'angular-google-charts';
+import { SettingsComponent } from './settings/settings.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,15 @@ import {GoogleChartsModule} from 'angular-google-charts';
     WorkoutComponent,
     WorkoutDetailsComponent,
     WorkoutMapComponent,
-    PulseChartComponent
+    PulseChartComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

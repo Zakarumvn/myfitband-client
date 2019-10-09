@@ -4,12 +4,14 @@ import {WorkoutComponent} from './workout/workout.component';
 import {WorkoutDetailsComponent} from './workout-details/workout-details.component';
 import {WorkoutMapComponent} from './workout-map/workout-map.component';
 import {PulseChartComponent} from './pulse-chart/pulse-chart.component';
+import {SettingsComponent} from './settings/settings.component';
 
 const routes: Routes = [
   { path: 'workouts', component: WorkoutComponent },
   { path: 'workout-details/:id', component: WorkoutDetailsComponent },
   { path: 'workout-map/:id', component: WorkoutMapComponent },
-  { path: 'pulse-chart/:id', component: PulseChartComponent }
+  { path: 'pulse-chart/:id', component: PulseChartComponent },
+  { path: 'settings', component: SettingsComponent }
 ];
 
 @NgModule({

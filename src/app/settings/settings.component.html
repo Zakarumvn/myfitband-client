@@ -1,0 +1,13 @@
+<div class="row mt-5">
+  <div class="col-md-9 mx-auto">
+    <h2 class="text-left">Konfiguracja</h2>
+    <div class="card mt-3">
+      <div class="card-body">
+        <label for="notificationDT">Godzina przypomnienia o pomiarze wagi</label>
+        <input type="datetime-local" id="notificationDT" required="required" class="form-control" ngModel="vm.settings.notificationTime">
+        <small>Przypomnienia będą wysyłane codziennie o wybranej godzinie.</small>
+        <button type="button" class="btn btn-primary" (click)="saveSettings()">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>

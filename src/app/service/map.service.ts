@@ -12,6 +12,7 @@ export class MapService {
   constructor(private http: HttpClient) { }
 
   getRouteForWorkout(workoutId): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/route`);
+    return this.http.get(`${this.BASE_URL}/${workoutId}`);
+
   }
 }
