@@ -11,6 +11,7 @@ import { PulseChartComponent } from './pulse-chart/pulse-chart.component';
 import {GoogleChartsModule} from 'angular-google-charts';
 import { SettingsComponent } from './settings/settings.component';
 import {FormsModule} from '@angular/forms';
+import { AlertListComponent } from './alert-list/alert-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {FormsModule} from '@angular/forms';
     WorkoutDetailsComponent,
     WorkoutMapComponent,
     PulseChartComponent,
-    SettingsComponent
+    SettingsComponent,
+    AlertListComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import {MapService} from '../service/map.service';
 import {GpsData} from '../entity/gpsData';
 
 declare var ol: any;
+declare var $: any;
 @Component({
   selector: 'app-workout-map',
   templateUrl: './workout-map.component.html',
@@ -13,20 +14,35 @@ declare var ol: any;
 })
 export class WorkoutMapComponent implements OnInit  {
   map: any;
-
+  markerLayer:any;
   gpsData: Array<GpsData> = [];
   isLoadingResults = false;
   latitude = 51.23553;
   longitude = 22.54866;
+  overlay: any;
+
+  @ViewChild('popup', { static: false })
+  container = document.getElementById('popup');
+
+  @ViewChild('content', { static: false })
+  content = document.getElementById('popup-content');
+  popupOverlay: any;
+
+  @ViewChild('closer', { static: false })
+  closer = document.getElementById('popup-closer');
+
+  @ViewChild('popup', { static: false })
+  Force = document.getElementById('Force');
+
 
   constructor(private router: Router, private route: ActivatedRoute, private mapService: MapService) { }
 
   ngOnInit() {
+
     this.loadGpsData().subscribe((data: any) => {
       this.gpsData = data;
       this.prepareMap();
     });
-
 
 
   }
@@ -40,15 +56,6 @@ export class WorkoutMapComponent implements OnInit  {
        return ol.proj.fromLonLat([o.gpsX, o.gpsY]);
     });
     return new ol.geom.LineString(punkty);
-
-    // return new ol.geom.LineString([
-    //   ol.proj.fromLonLat([22.547564, 51.236151]),
-    //   ol.proj.fromLonLat([22.547950, 51.234272]),
-    //   ol.proj.fromLonLat([22.548656, 51.235912]),
-    //   ol.proj.fromLonLat([22.548156, 51.236912]),
-    //   ol.proj.fromLonLat([22.548956, 51.233912]),
-    // ]);
-
   }
 
   prepareMap(){
@@ -66,19 +73,10 @@ export class WorkoutMapComponent implements OnInit  {
         })
       ],
       view: new ol.View({
-        // center: ol.proj.fromLonLat([22.5486, 51.2355]),
-        center: ol.proj.fromLonLat([22.5273723, 51.2707157]),
+        center: this.centerCoordinates(),
         zoom: 17
       })
     });
-
-    let lineString2 = new ol.geom.LineString([
-      ol.proj.fromLonLat([22.547564, 51.236151]),
-      ol.proj.fromLonLat([22.547950, 51.234272]),
-      ol.proj.fromLonLat([22.548656, 51.235912]),
-      ol.proj.fromLonLat([22.548156, 51.236912]),
-      ol.proj.fromLonLat([22.548956, 51.233912]),
-    ]);
 
     ol.proj.fromLonLat([33.8, 8.4]);
 
@@ -90,10 +88,48 @@ export class WorkoutMapComponent implements OnInit  {
         })]
       }),
       style: new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'red', width: 3}),
+        stroke: new ol.style.Stroke({color: 'blue', width: 4}),
       })
     });
     this.map.addLayer(layerLines);
+
+    var popup = new ol.Overlay({
+      element: document.getElementById('Force')
+    });
+    this.map.addOverlay(popup);
+
+    var extent = layerLines.getSource().getExtent();
+    this.map.getView().fit(extent, this.map.getSize());
+
+    this.map.on('click', function(evt) {
+      var element = popup.getElement();
+      var coordinate = evt.coordinate;
+      var hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
+
+
+      var modifyForce = 0;
+      var forceBase = 15;
+      var Force = (forceBase + modifyForce);
+      var el = document.getElementById("Force");
+
+      el.innerHTML = Force.toString();
+      el.setAttribute('tooltip', forceBase + ' + ' + modifyForce);
+
+      // (<any>$(element)).popover('destroy');
+      // popup.setPosition(coordinate);
+      // (<any> $(element)).popover({
+      //   placement: 'top',
+      //   animation: false,
+      //   html: true,
+      //   content: '<p>The location you clicked was:</p><code>' + hdms + '</code>'
+      // });
+      // (<any> $(element)).popover('show');
+    });
+  }
+
+  centerCoordinates() {
+    var middleIndex = Math.floor(this.gpsData.length / 2);
+    return ol.proj.fromLonLat([this.gpsData[middleIndex].gpsX, this.gpsData[middleIndex].gpsY]);
   }
 
 }
