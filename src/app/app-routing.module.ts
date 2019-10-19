@@ -6,6 +6,7 @@ import {WorkoutMapComponent} from './workout-map/workout-map.component';
 import {PulseChartComponent} from './pulse-chart/pulse-chart.component';
 import {SettingsComponent} from './settings/settings.component';
 import {AlertListComponent} from './alert-list/alert-list.component';
+import {WeightChartComponent} from './weight-chart/weight-chart.component';
 
 const routes: Routes = [
   { path: 'workouts', component: WorkoutComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'alert-list', component: AlertListComponent },
   { path: '', component: AlertListComponent },
+  { path: 'weight-chart', component: WeightChartComponent },
 ];
 
 @NgModule({

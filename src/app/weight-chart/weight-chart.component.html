@@ -1,10 +1,10 @@
-<div class="row mt-12">
-  <div class="col-md-12 mx-auto">
-    <h2 class="text-left">Wykres pulsu</h2>
+<div class="row mt-5">
+  <div class="col-md-9 mx-auto">
+    <h2 class="text-left">Wykres wagi</h2>
     <div class="card mt-3">
       <div class="card-body">
         <google-chart
-          [hidden]="pulsesData.length == 0"
+          [hidden]="weightData.length == 0"
           [title]="title"
           [type]="type"
           [data]="data"

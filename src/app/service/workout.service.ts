@@ -24,6 +24,10 @@ export class WorkoutService {
     return this.http.get(`${this.BASE_URL}/pulse/${workoutId}`);
   }
 
+  getWeightChart() {
+    return this.http.get(`${this.BASE_URL}/weight`);
+  }
+
   getAlerts(): Observable<any> {
     return this.http.get(`${this.BASE_URL}/alerts`);
     // return this.getMockAlerts() ;

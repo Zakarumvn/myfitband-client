@@ -52,7 +52,7 @@ export class PulseChartComponent implements OnInit {
     this.type = 'LineChart';
     this.columnNames = this.prepareColumnNames();
     this.options = {
-      width: 800,
+      width: 1000,
       height: 500
     };
 

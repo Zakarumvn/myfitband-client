@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import { AlertListComponent } from './alert-list/alert-list.component';
 import {DatePipe} from '@angular/common';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
+import { WeightChartComponent } from './weight-chart/weight-chart.component';
 
 
 export var options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -26,7 +27,8 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
     WorkoutMapComponent,
     PulseChartComponent,
     SettingsComponent,
-    AlertListComponent
+    AlertListComponent,
+    WeightChartComponent
   ],
   imports: [
     BrowserModule,
