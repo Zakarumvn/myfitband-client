@@ -14,7 +14,7 @@
       <tbody>
       <tr *ngFor="let alert of alerts | async">
         <td>{{alert.date | date:'dd-MM-yyyy hh:mm:ss'}}</td>
-        <td>{{alert.type}}</td>
+        <td>{{alert.alertType.description}}</td>
         <td><img src="../../assets/warning-icon.png" style="height: 20px; width: 20px;">{{alert.description}}</td>
       </tr>
       </tbody>

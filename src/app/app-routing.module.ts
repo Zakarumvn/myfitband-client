@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'pulse-chart/:id', component: PulseChartComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'alert-list', component: AlertListComponent },
+  { path: '', component: AlertListComponent },
 ];
 
 @NgModule({

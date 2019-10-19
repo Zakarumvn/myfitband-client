@@ -12,6 +12,11 @@ import {GoogleChartsModule} from 'angular-google-charts';
 import { SettingsComponent } from './settings/settings.component';
 import {FormsModule} from '@angular/forms';
 import { AlertListComponent } from './alert-list/alert-list.component';
+import {DatePipe} from '@angular/common';
+import {IConfig, NgxMaskModule} from 'ngx-mask';
+
+
+export var options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
   declarations: [
@@ -28,9 +33,10 @@ import { AlertListComponent } from './alert-list/alert-list.component';
     AppRoutingModule,
     HttpClientModule,
     GoogleChartsModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(options)
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

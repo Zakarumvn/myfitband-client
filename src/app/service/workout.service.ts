@@ -25,8 +25,8 @@ export class WorkoutService {
   }
 
   getAlerts(): Observable<any> {
-    // return this.http.get(`${this.BASE_URL}/alerts`);
-    return this.getMockAlerts() ;
+    return this.http.get(`${this.BASE_URL}/alerts`);
+    // return this.getMockAlerts() ;
   }
 
   getMockAlerts(): any {

@@ -42,7 +42,7 @@ export class PulseChartComponent implements OnInit {
         console.log('pomiary pulsu dla treningu nr ' + this.route.snapshot.params.id);
         this.isLoadingResults = false;
         if (data.length > 0 && this.physicalProperties != null) {
-          this.drawChart(this.prepareSeries(data, this.physicalProperties));
+          this.drawChart(this.prepareSeries(data));
         }
       });
   }
@@ -71,7 +71,7 @@ export class PulseChartComponent implements OnInit {
     ];
   }
 
-  prepareSeries(data, physicalProperties) {
+  prepareSeries(data) {
     for (let i = 0; i < data.length; i++) {
       this.pulsesData.push([data[i].date as unknown as string,
         data[i].value,

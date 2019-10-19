@@ -17,12 +17,8 @@ export class SettingsService {
     return this.http.get(`${this.BASE_SETTINGS_URL}`);
   }
 
-  saveSettings2(setting: NotificationDate, headers) {
+  saveSettings(setting: NotificationDate, headers) {
     return this.http.post(`${this.BASE_SETTINGS_URL}Notification/save`, setting, headers);
-  }
-
-  saveSettings(setting: Setting, headers) {
-    return this.http.post(`${this.BASE_SETTINGS_URL}/save`, setting, headers);
   }
 
   getPhysicalProperties() {
